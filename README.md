@@ -4,7 +4,7 @@ TraySymbols Native is a small standalone Windows tray tool for inserting typogra
 
 This v0.2 native build intentionally focuses on tray-based insertion. It does not install global hotstrings or keyboard hooks, so it keeps a much smaller behavioral footprint than the old AutoHotkey version.
 
-![TraySymbols tray menu preview](docs/preview.svg)
+![TraySymbols tray menu preview](docs/preview-en.svg)
 
 ## Features
 

@@ -74,6 +74,7 @@ jobs:
         run: |
           gh release create "${env:GITHUB_REF_NAME}" `
             artifacts/*.zip `
+            --repo "${env:GITHUB_REPOSITORY}" `
             --draft `
             --title "${env:GITHUB_REF_NAME}" `
             --notes "Native portable TraySymbols release. Review and publish manually."
