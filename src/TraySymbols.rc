@@ -1,0 +1,39 @@
+#include <windows.h>
+#include "resource.h"
+#include "version.h"
+
+IDI_APP ICON "../assets/traysymbols.ico"
+
+1 RT_MANIFEST "TraySymbols.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION TRAYSYMBOLS_VERSION_MAJOR,TRAYSYMBOLS_VERSION_MINOR,TRAYSYMBOLS_VERSION_PATCH,TRAYSYMBOLS_VERSION_BUILD
+ PRODUCTVERSION TRAYSYMBOLS_VERSION_MAJOR,TRAYSYMBOLS_VERSION_MINOR,TRAYSYMBOLS_VERSION_PATCH,TRAYSYMBOLS_VERSION_BUILD
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704b0"
+        BEGIN
+            VALUE "CompanyName", "Max Liebscher\0"
+            VALUE "FileDescription", "TraySymbols native tray tool\0"
+            VALUE "FileVersion", TRAYSYMBOLS_FILE_VERSION_TEXT "\0"
+            VALUE "InternalName", "TraySymbols\0"
+            VALUE "OriginalFilename", "TraySymbols.exe\0"
+            VALUE "ProductName", "TraySymbols\0"
+            VALUE "ProductVersion", TRAYSYMBOLS_VERSION_TEXT "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END

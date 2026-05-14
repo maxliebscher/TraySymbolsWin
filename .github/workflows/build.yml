@@ -1,0 +1,79 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  APP_NAME: TraySymbols
+  VERSION: 0.2.0
+
+jobs:
+  build:
+    name: Build ${{ matrix.arch.name }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:
+          - name: x64
+            vcvars_arch: x64
+          - name: x86
+            vcvars_arch: x86
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure and build
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vsPath) { throw "Visual Studio C++ Build Tools not found." }
+          $vcvars = Join-Path $vsPath "VC\Auxiliary\Build\vcvarsall.bat"
+          cmd /c "`"$vcvars`" ${{ matrix.arch.vcvars_arch }} && cmake -S . -B build-${{ matrix.arch.name }} -G `"NMake Makefiles`" -DCMAKE_BUILD_TYPE=Release && cmake --build build-${{ matrix.arch.name }} --config Release"
+
+      - name: Package portable ZIP
+        shell: pwsh
+        run: |
+          $dist = "dist/${env:APP_NAME}-v${env:VERSION}-${{ matrix.arch.name }}"
+          New-Item -ItemType Directory -Force $dist | Out-Null
+          Copy-Item "build-${{ matrix.arch.name }}/${env:APP_NAME}.exe" "$dist/${env:APP_NAME}.exe"
+          Copy-Item README.md, LICENSE $dist
+          Compress-Archive -Path "$dist/*" -DestinationPath "${dist}.zip" -Force
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APP_NAME }}-v${{ env.VERSION }}-${{ matrix.arch.name }}
+          path: dist/${{ env.APP_NAME }}-v${{ env.VERSION }}-${{ matrix.arch.name }}.zip
+
+  draft-release:
+    name: Draft GitHub Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: windows-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Create draft release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${env:GITHUB_REF_NAME}" `
+            artifacts/*.zip `
+            --draft `
+            --title "${env:GITHUB_REF_NAME}" `
+            --notes "Native portable TraySymbols release. Review and publish manually."
