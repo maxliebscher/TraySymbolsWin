@@ -60,11 +60,11 @@ Start `TraySymbols.exe`. A tray icon appears in the Windows notification area.
 - Left-click or right-click the icon to open the menu.
 - Click a symbol to copy it.
 - Paste with `Ctrl + V` wherever you want to insert it.
-- Use `Manage symbols...` / `Zeichen verwalten...` to add, edit, delete, and reorder your own symbols.
-- Use `About...` / `Info...` to see version, GitHub URL, architecture, config mode, and config path.
-- Use `Open config folder` / `Config-Ordner öffnen` to open the active config folder.
-- Toggle `Start with Windows` / `Mit Windows starten` to create or remove the current-user Startup shortcut.
-- Use `Exit` / `Beenden` to quit.
+- Use `Manage symbols...` to add, edit, delete, and reorder your own symbols.
+- Use `About...` to see version, GitHub URL, architecture, config mode, and config path.
+- Use `Open config folder` to open the active config folder.
+- Toggle `Start with Windows` to create or remove the current-user Startup shortcut.
+- Use `Exit` to quit.
 
 Menu entries are shown symbol-first, for example:
 
@@ -77,7 +77,7 @@ Menu entries are shown symbol-first, for example:
 Custom entries have two fields:
 
 - `Label`: menu label shown in the tray menu
-- `Zeichen/Text`: the text copied to the clipboard
+- `Symbol/Text`: the text copied to the clipboard
 
 If `Label` is empty, TraySymbols uses the text as the label.
 
@@ -108,7 +108,7 @@ If that folder is not writable, it falls back to:
 
 For no-install autostart:
 
-Use the tray menu item `Start with Windows` / `Mit Windows starten`.
+Use the tray menu item `Start with Windows`.
 
 TraySymbols creates a current-user Startup-folder shortcut at:
 

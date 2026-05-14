@@ -14,11 +14,11 @@
   <text x="160" y="104" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#111827">TraySymbols</text>
   <line x1="150" y1="124" x2="372" y2="124" stroke="#b8c0cc"/>
   <g font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#111827">
-    <text x="160" y="151">Zeichen verwalten...</text>
-    <text x="160" y="178">Info...</text>
-    <text x="160" y="205">Config-Ordner öffnen</text>
-    <text x="160" y="232">✓ Mit Windows starten</text>
-    <text x="160" y="259">Beenden</text>
+    <text x="160" y="151">Manage symbols...</text>
+    <text x="160" y="178">About...</text>
+    <text x="160" y="205">Open config folder</text>
+    <text x="160" y="232">✓ Start with Windows</text>
+    <text x="160" y="259">Exit</text>
   </g>
   <line x1="150" y1="282" x2="372" y2="282" stroke="#b8c0cc"/>
   <g font-family="Segoe UI, Arial, sans-serif" font-size="14">
@@ -43,14 +43,14 @@
       <text x="194" y="524" text-anchor="middle">|</text>
     </g>
     <g fill="#111827">
-      <text x="218" y="314">Mittelpunkt</text>
-      <text x="218" y="344">Blume</text>
-      <text x="218" y="374">Florales Herz</text>
+      <text x="218" y="314">Middle dot</text>
+      <text x="218" y="344">Flower</text>
+      <text x="218" y="374">Floral heart</text>
       <text x="218" y="404">Fleuron</text>
-      <text x="218" y="434">Asterismus</text>
-      <text x="218" y="464">Doppelgeviertstrich</text>
-      <text x="218" y="494">Halbgeviertstrich</text>
-      <text x="218" y="524">Geviertstrich</text>
+      <text x="218" y="434">Asterism</text>
+      <text x="218" y="464">Two-em dash</text>
+      <text x="218" y="494">En dash</text>
+      <text x="218" y="524">Em dash</text>
     </g>
   </g>
   <rect x="132" y="540" width="258" height="34" rx="3" fill="#2563eb"/>
